@@ -45,3 +45,9 @@ Preset.execute<Context>('php')
 Preset.execute<Context>('composer', 'remove', 'larave/ui')
 	.withTitle(`Removing ${color.magenta('laravel/ui')}...`)
 	.if(({ context }) => Boolean(context.uninstallUi));
+
+// Displays instructions.
+Preset.instruct([
+	`Install dependencies ${color.magenta('npm install')} or ${color.magenta('yarn')}`,
+	`Run ${color.magenta('npm run dev')} or ${color.magenta('yarn dev')}`,
+]);
