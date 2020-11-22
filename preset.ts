@@ -2,49 +2,84 @@ import { Preset, color } from 'use-preset';
 
 interface Context {
 	presetName: string;
-	packages: string[];
+	presetTitle: string;
+	install: string[];
+	command: string[];
+	uninstall: string[];
 	options: string[];
-	uninstallUi?: boolean;
 }
 
-const packageName = (name: string) => `laravel-frontend-presets/${name}`;
+const formatPackageList = (packages: string[]) => {
+	return packages
+		.map((name) => color.magenta(name))
+		.join(', ')
+		.replace(/,(?!.*,)/gim, ' and');
+};
 
 // Sets the name.
-Preset.setName<Context>(({ context: { presetName } }) => packageName(presetName));
+Preset.setName<Context>(({ context }) => context.presetTitle);
 
 // Sets up the context with the arguments and options given.
 Preset.hook<Context>(({ context, args, options }) => {
 	context.presetName = args[2];
+	context.install = [];
+	context.uninstall = [];
+	context.options = Object.keys(options)
+		.filter((option) => ['auth', 'extra'].includes(option))
+		.map((option) => `--${option}`);
 
 	if (!context.presetName) {
 		throw new Error(`The preset name is missing.`);
 	}
 
-	context.packages = ['laravel/ui', packageName(context.presetName), ...(options.deps ?? [])];
-	context.options = Object.keys(options)
-		.filter((option) => ['auth'].includes(option))
-		.map((option) => `--${option}`);
+	switch (context.presetName) {
+		// Actual laravel/ui presets
+		case 'bootstrap':
+		case 'vue':
+		case 'react':
+			context.presetTitle = context.presetName;
+			context.install.push('laravel/ui');
+			context.command = ['artisan', 'ui', context.presetName, ...context.options];
+			break;
 
-	if (context.presetName === 'tall') {
-		context.packages.push('livewire/livewire');
-		context.uninstallUi = true;
+		// Support for Breeze
+		case 'breeze':
+			context.presetTitle = `laravel/breeze`;
+			context.install.push('laravel/breeze');
+			context.uninstall.push('laravel/breeze');
+			context.command = ['artisan', 'breeze:install'];
+			break;
+
+		// Special TALL handling
+		case 'tall':
+			context.install.push('livewire/livewire');
+			context.uninstall.push('laravel/ui');
+
+		// Common to all laravel-frontend-presets
+		default:
+			const packageName = `laravel-frontend-presets/${context.presetName}`;
+			context.presetTitle = packageName;
+			context.install.push('laravel/ui', packageName);
+			context.uninstall.push(packageName);
+			context.command = ['artisan', 'ui', context.presetName, ...context.options];
 	}
 }).withoutTitle();
 
 // Requires the packages.
 Preset.execute<Context>('composer')
-	.withArguments(({ context }) => ['require', ...context.packages])
-	.withTitle(`Installing ${color.magenta('laravel/ui')}...`);
+	.withArguments(({ context }) => ['require', ...context.install])
+	.withTitle(({ context }) => `Installing ${formatPackageList(context.install)}...`);
 
 // Executes the Artisan commands.
 Preset.execute<Context>('php')
-	.withArguments(({ context }) => ['artisan', 'ui', context.presetName, ...context.options])
-	.withTitle(({ context }) => `Applying ${color.magenta(packageName(context.presetName))}...`);
+	.withArguments(({ context }) => context.command)
+	.withTitle(({ context }) => `Applying ${color.magenta(context.presetTitle)}...`);
 
-// Requires the packages.
-Preset.execute<Context>('composer', 'remove', 'larave/ui')
-	.withTitle(`Removing ${color.magenta('laravel/ui')}...`)
-	.if(({ context }) => Boolean(context.uninstallUi));
+// Removes the packages.
+Preset.execute<Context>('composer')
+	.withArguments(({ context }) => ['remove', ...context.uninstall])
+	.withTitle(({ context }) => `Removing ${formatPackageList(context.uninstall)}...`)
+	.if(({ context }) => context.uninstall.length > 0);
 
 // Displays instructions.
 Preset.instruct([
