@@ -21,12 +21,19 @@ Preset.setName<Context>(({ context }) => context.presetTitle);
 
 // Sets up the context with the arguments and options given.
 Preset.hook<Context>(({ context, args, options }) => {
-	context.presetName = args[2];
 	context.install = [];
 	context.uninstall = [];
 	context.options = Object.keys(options)
 		.filter((option) => ['auth', 'extra'].includes(option))
 		.map((option) => `--${option}`);
+
+	if (options.breeze) {
+		context.presetName = 'breeze';
+	} else if (options.tall) {
+		context.presetName = 'tall';
+	} else {
+		context.presetName = args[2];
+	}
 
 	if (!context.presetName) {
 		throw new Error(`The preset name is missing.`);
