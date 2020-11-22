@@ -34,11 +34,20 @@
   <br />
   <br />
   <br />
+  <b>Laravel Breeze</b>
+  <br />
   <code>npx use-preset laravel:frontend --breeze</code>
+  <br />
+  <br />
+  <b>The TALL preset</b>
   <br />
   <code>npx use-preset laravel:frontend --tall --auth</code>
   <br />
+  <br />
+  <b>Any front-end preset</b>
+  <br />
   <code>npx use-preset laravel:frontend . tailwindcss</code>
+  <br />
   <br />
   <br />
   <a href="https://usepreset.dev/docs/guides/laravel/">See what it does</a> - <a href="https://usepreset.dev">Read documentation</a>
