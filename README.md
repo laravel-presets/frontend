@@ -23,14 +23,22 @@
   </a>
   <br />
   <br />
-  <pre align="center">npx use-preset laravel:frontend . tall --auth</pre>
+  <pre align="center">npx use-preset laravel:frontend &lt;path&gt; &lt;preset name&gt; [--tall | --breeze] [--auth]</pre>
 </p>
 <br />
 
 <div align="center">
-  This preset is a shortcut for installing a <a href="https://github.com/laravel-frontend-presets/">Laravel Frontend Preset</a>.
+  This preset is a shortcut for installing a <a href="https://github.com/laravel-frontend-presets/">Laravel Frontend Preset</a> or <a href="https://github.com/laravel/breeze/">Laravel Breeze</a>.
   <br />
-  It installs <code>laravel/ui</code> and runs the <code>php artisan</code> command for you.
+  You may use the <code>--tall</code> or <code>--breeze</code> flag, or specify the name of the preset you want to install as the second argument.
+  <br />
+  <br />
+  <br />
+  <code>npx use-preset laravel:frontend --breeze</code>
+  <br />
+  <code>npx use-preset laravel:frontend --tall --auth</code>
+  <br />
+  <code>npx use-preset laravel:frontend . tailwindcss</code>
   <br />
   <br />
   <a href="https://usepreset.dev/docs/guides/laravel/">See what it does</a> - <a href="https://usepreset.dev">Read documentation</a>
