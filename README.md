@@ -1,7 +1,7 @@
 <p align="center">
   <br />
   <a href="https://usepreset.dev">
-    <img width="100" src="https://raw.githubusercontent.com/use-preset/cli/main/.github/assets/logo.svg" alt="Logo of the Preset tool">
+    <img width="100" src="https://raw.githubusercontent.com/preset/cli/main/.github/assets/logo.svg" alt="Logo of the Preset tool">
   </a>
   <br />
 </p>
@@ -10,8 +10,8 @@
 
 <p align="center">
   <br />
-  <a href="https://www.npmjs.com/package/use-preset">
-    <img alt="npm" src="https://img.shields.io/npm/v/use-preset?label=preset">
+  <a href="https://www.npmjs.com/package/apply">
+    <img alt="npm" src="https://img.shields.io/npm/v/apply?label=preset">
   </a>
   <span>&nbsp;</span>
   <a href="https://discord.gg/XWwzc45KZu">
@@ -23,7 +23,7 @@
   </a>
   <br />
   <br />
-  <pre align="center">npx use-preset laravel:frontend &lt;path&gt; &lt;preset name&gt; [--tall | --breeze] [--auth]</pre>
+  <pre align="center">npx apply laravel:frontend &lt;path&gt; &lt;preset name&gt; [--tall | --breeze] [--auth]</pre>
 </p>
 <br />
 
@@ -36,17 +36,17 @@
   <br />
   <b>Laravel Breeze</b>
   <br />
-  <code>npx use-preset laravel:frontend --breeze</code>
+  <code>npx apply laravel:frontend --breeze</code>
   <br />
   <br />
   <b>The TALL preset</b>
   <br />
-  <code>npx use-preset laravel:frontend --tall --auth</code>
+  <code>npx apply laravel:frontend --tall --auth</code>
   <br />
   <br />
   <b>Any front-end preset</b>
   <br />
-  <code>npx use-preset laravel:frontend . tailwindcss</code>
+  <code>npx apply laravel:frontend . tailwindcss</code>
   <br />
   <br />
   <br />

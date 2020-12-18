@@ -1,4 +1,4 @@
-import { Preset, color } from 'use-preset';
+import { Preset, color } from 'apply';
 
 interface Context {
 	presetName: string;

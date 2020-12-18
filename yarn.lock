@@ -181,7 +181,7 @@ cross-spawn@^7.0.0:
     shebang-command "^2.0.0"
     which "^2.0.1"
 
-debug@^4.1.1:
+debug@4.2.0, debug@^4.1.1:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.2.0.tgz#7f150f93920e94c58f5574c2fd01a3110effe7f1"
   integrity sha512-IX2ncY78vDTjZMFUdmsvIRFY2Cf4FnD0wRs+nQwJU8Lu99/tPFdb0VybiiMTPe3I6rQmwsqQqRBvxU+bZ/I8sg==
@@ -673,14 +673,15 @@ unset-value@^1.0.0:
     has-value "^0.3.1"
     isobject "^3.0.0"
 
-use-preset@^0.2.0-alpha.3:
-  version "0.2.0-alpha.3"
-  resolved "https://registry.yarnpkg.com/use-preset/-/use-preset-0.2.0-alpha.3.tgz#6051ffa9e3955450c541b3fe470e68dea769e684"
-  integrity sha512-OTAHeuLIA5e6ECpYvG11EAarsmYaN86PHqXDapudFapbjORRK7FUuO0xvTBaQ1gb7Np7E4qtip9dJRe9QlIAzw==
+use-preset@^0.2:
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/use-preset/-/use-preset-0.2.8.tgz#dcbcc02bc504493ff333da3cf79e46e3c2a31ea9"
+  integrity sha512-tFULOlt9KR9JFUXa299/SIFBO+TiBb2ad3jedr+YVCj2eMhPBPnOH7fo2n8PTAGe7caarXFXjQox/ttaSa7Ivw==
   dependencies:
     "@poppinss/cliui" "^2.0.2"
     "@poppinss/prompts" "^1.1.7"
     cac "^6.6.1"
+    debug "4.2.0"
     deepmerge "^4.2.2"
     detect-indent "^6.0.0"
     enquirer "^2.3.6"

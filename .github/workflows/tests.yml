@@ -44,4 +44,4 @@ jobs:
       - name: Install preset
         run: |
           cd ../app
-          npx use-preset laravel:frontend ${{ matrix.command }} --no-interaction --no-ssh -vv
+          npx apply laravel:frontend ${{ matrix.command }} --no-interaction --no-ssh -vv
